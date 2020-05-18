@@ -29,10 +29,10 @@
 Bottle () {
 
 declare -ag Crafts=( $@ ) && export Wasted=${#Crafts[@]}
-declare -ag Rotate=( $(tr -dc '[:digit:]' < /dev/random        |\
+declare -ag Rotate=( $(tr -dc '[:digit:]' < /dev/random          |\
 head -c1000${Wasted//*/0} | fold -b${#Wasted}                    |\
-awk '/'$(eval echo {00..${Wasted}} | tr ' ' '|' )'/ {print $0}' |\
-sort | uniq -c | sort | awk '{print $2}'                       ))
+awk '/'$(eval echo {00..${Wasted}} | tr ' ' '|' )'/ {print $0}'  |\
+sort | uniq -c | sort | awk '{print $2}'                         ))
 eval eval declare -Ag Stuper[\${Rotate[\$\(\(A++\)\)]}]=\\$\{Crafts\[{0..$Wasted}\]\}
 
 	if [[ ${Bottle_1:=0} = 1 ]]; then
